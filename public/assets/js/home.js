@@ -76,20 +76,21 @@ function authenticateUser(email, password) {
       }
     },
     method: 'POST'
-  }).then(function(data, status, jqXHR) {
-    if (authSetting === 'signup') {
-      handleSignupResponse(status);
-    } else {
-      handleLoginResponse(data, status, jqXHR);
-    }
   })
-  .catch(function(err) {
-    if (authSetting === 'signup') {
-      handleSignupResponse(err.statusText);
-    } else {
-      handleLoginResponse(err.statusText);
-    }
-  });
+    .then(function(data, status, jqXHR) {
+      if (authSetting === 'signup') {
+        handleSignupResponse(status);
+      } else {
+        handleLoginResponse(data, status, jqXHR);
+      }
+    })
+    .catch(function(err) {
+      if (authSetting === 'signup') {
+        handleSignupResponse(err.statusText);
+      } else {
+        handleLoginResponse(err.statusText);
+      }
+    });
 }
 
 $setLogin.on('click', setAuth.bind(null,'login'));
