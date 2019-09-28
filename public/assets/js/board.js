@@ -66,7 +66,7 @@ function createCards(cards) {
 
 function createLists(lists) {
   let $listContainers = lists.map(function(list) {
-    let $listContainer = $('<div class="list">').data('id', list.id);
+    let $listContainer = $('<div class="list">').data(list);
     let $header = $('<header>');
     let $headerButton = $('<button>')
       .text(list.title)
@@ -104,6 +104,39 @@ function renderBoard() {
 
   $boardContainer.empty();
   $boardContainer.append($lists);
+
+  makeSortable();
+}
+
+function makeSortable() {
+  Sortable.create($boardContainer[0], {
+    animation: 150,
+    ghostClass: 'ghost',
+    filter: '.add',
+    easing: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+    onMove: function(event) {
+      let shouldMove = !$(event.related).hasClass('add');
+      return shouldMove;
+    },
+    onEnd: function(event) {
+      let { id, position } = $(event.item).data();
+      let newPosition = event.newIndex + 1;
+
+      if (position === newPosition) {
+        return;
+      }
+
+      $.ajax({
+        url: `/api/lists/${id}`,
+        data: {
+          position: newPosition
+        },
+        method: 'PUT'
+      }).then(function() {
+        init();
+      });
+    }
+  });
 }
 
 function openListCreateModal() {
