@@ -1,24 +1,19 @@
-# README
+# Mello
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Mello is a clone of Trello written with JavaScript, utilizing a pre-built back end. It allows users to log in and generate task management boards, which can be organized by the user.
+  
+  
+[View the deployed application](https://mello-kevin-northrup.herokuapp.com/)
+___
 
-Things you may want to cover:
+### Features:
+- Built using Ruby on Rails
+- jQuery for constant view updates as changes are made
+- Modals for all user-facing forms
+- User authentication using JSON Web Tokens (JWT)
+- Drag and drop functionality for ease of use
+- Multiple contributors can be applied to one board
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+___
+### Screenshot:
+![Screenshot](mello.png)
